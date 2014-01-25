@@ -59,7 +59,7 @@ Request.prototype.reject = function (error) {
 
 Request.prototype.timeout = 10000;
 
-Request.prototype.ontimeout = function () {
+Request.prototype._ontimeout = function () {
   var error = new Error('The request timed out after ' + this.timeout + 'ms');
   this.reject(error);
 };

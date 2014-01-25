@@ -114,11 +114,11 @@ describe('Request', function () {
 
   });
 
-  describe('#ontimeout', function () {
+  describe('#_ontimeout', function () {
 
     beforeEach(function () {
       sinon.spy(this.request, 'reject');
-      this.request.ontimeout();
+      this.request._ontimeout();
     });
 
     it('triggers a rejection', function () {
