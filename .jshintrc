@@ -1,0 +1,9 @@
+{
+  "node": true,
+  "trailing": true,
+  "quotmark": "single",
+  "indent": 2,
+  "nonew": true,
+  "newcap": true,
+  "immed": true
+}
