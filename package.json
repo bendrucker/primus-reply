@@ -1,7 +1,7 @@
 {
-  "name": "primus-request",
+  "name": "primus-reply",
   "version": "0.0.0",
-  "description": "Primus plugin for composing socket messages that expect responses",
+  "description": "Primus plugin for socket messages that expect replies",
   "keywords": [
     "primus",
     "websockets",
@@ -10,7 +10,7 @@
     "promise"
   ],
   "bugs": {
-    "url": "https://github.com/valet-io/primus-request/issues"
+    "url": "https://github.com/valet-io/primus-reply/issues"
   },
   "license": "MIT",
   "author": {
@@ -20,7 +20,7 @@
   },
   "respository": {
     "type": "git",
-    "url": "git@github.com:valet-io/primus-request.git"
+    "url": "git@github.com:valet-io/primus-reply.git"
   },
   "engines": {
     "node": ">=0.8"
