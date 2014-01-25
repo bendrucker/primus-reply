@@ -25,6 +25,10 @@ function Request (data, callback) {
   };
 }
 
+Request.prototype.id = function () {
+  return this.envelope.uuid;
+};
+
 Request.prototype['finally'] = function () {
   var promise = this.deferred.promise;
   promise['finally'].apply(promise, arguments);

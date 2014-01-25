@@ -1,7 +1,6 @@
 'use strict';
 
 var Request      = require('../../../src/client/request'),
-    EventEmitter = require('events').EventEmitter,
     sinon        = require('sinon'),
     expect       = require('chai').expect,
     _            = require('lodash');
@@ -20,7 +19,7 @@ describe('Request', function () {
 
     it('creates a deferred', function () {
       expect(this.request)
-        .to.have.a.deep.property('deferred.promise')
+        .to.have.a.deep.property('deferred.promise');
     });
 
     it('stores the callback', function () {
@@ -51,6 +50,15 @@ describe('Request', function () {
           .to.have.property('data', this.data);
       });
 
+    });
+
+  });
+
+  describe('#id', function () {
+
+    it('returns the request ID', function () {
+      expect(this.request.id())
+        .to.equal(this.request.envelope.uuid);
     });
 
   });
