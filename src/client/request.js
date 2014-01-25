@@ -29,10 +29,13 @@ Request.prototype.id = function () {
   return this.envelope.uuid;
 };
 
-Request.prototype['finally'] = function () {
-  var promise = this.deferred.promise;
-  promise['finally'].apply(promise, arguments);
-};
+// Proxy the request's deferred promise methods so it can be part of a promise chain
+['then', 'catch', 'finally'].forEach(function (method) {
+  Request.prototype[method] = function () {
+    var promise = this.deferred.promise;
+    return promise[method].apply(promise, arguments);
+  };
+});
 
 Request.prototype.resolve = function (data) {
   // Resolve the deferred

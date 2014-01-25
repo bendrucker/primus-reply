@@ -63,14 +63,18 @@ describe('Request', function () {
 
   });
 
-  describe('#finally', function () {
+  ['then', 'catch', 'finally'].forEach(function (method) {
 
-    it('proxies the promise.finally method', function () {
-      var promise = this.request.deferred.promise;
-      this.fin = sinon.stub(promise, 'finally');
-      this.request['finally'](0, 0);
-      sinon.assert.calledOn(this.fin, promise);
-      sinon.assert.calledWith(this.fin, 0, 0);
+    describe('#' + method, function () {
+
+      it('proxies the promise.' + method + ' method', function () {
+        var promise = this.request.deferred.promise;
+        var promiseMethod = sinon.stub(promise, method);
+        this.request[method](0, 0);
+        sinon.assert.calledOn(promiseMethod, promise);
+        sinon.assert.calledWith(promiseMethod, 0, 0);
+      });
+
     });
 
   });
