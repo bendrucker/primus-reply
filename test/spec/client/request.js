@@ -55,6 +55,18 @@ describe('Request', function () {
 
   });
 
+  describe('#finally', function () {
+
+    it('proxies the promise.finally method', function () {
+      var promise = this.request.deferred.promise;
+      this.fin = sinon.stub(promise, 'finally');
+      this.request['finally'](0, 0);
+      sinon.assert.calledOn(this.fin, promise);
+      sinon.assert.calledWith(this.fin, 0, 0);
+    });
+
+  });
+
   describe('#resolve', function () {
 
     beforeEach(function () {

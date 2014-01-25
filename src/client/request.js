@@ -25,9 +25,9 @@ function Request (data, callback) {
   };
 }
 
-Request.prototype.fin = function () {
+Request.prototype['finally'] = function () {
   var promise = this.deferred.promise;
-  promise.fin.apply(promise, arguments);
+  promise['finally'].apply(promise, arguments);
 };
 
 Request.prototype.resolve = function (data) {
