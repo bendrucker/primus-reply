@@ -13,8 +13,7 @@ Handles:
 */
 
 var RSVP         = require('RSVP'),
-    uuid         = require('node-uuid'),
-    EventEmitter = require('events').EventEmitter;
+    uuid         = require('node-uuid');
 
 function Request (data, callback) {
   this.deferred = new RSVP.defer();
@@ -25,6 +24,11 @@ function Request (data, callback) {
     data: data
   };
 }
+
+Request.prototype.fin = function () {
+  var promise = this.deferred.promise;
+  promise.fin.apply(promise, arguments);
+};
 
 Request.prototype.resolve = function (data) {
   // Resolve the deferred

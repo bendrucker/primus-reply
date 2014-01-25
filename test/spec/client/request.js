@@ -28,7 +28,7 @@ describe('Request', function () {
         .to.have.a.property('callback', this.callback);
     });
 
-    describe('.envelope', function () {
+    describe('request.envelope', function () {
 
       beforeEach(function () {
         this.envelope = this.request.envelope;
