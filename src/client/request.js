@@ -12,7 +12,7 @@ Handles:
 
 */
 
-var RSVP         = require('RSVP'),
+var RSVP         = require('rsvp'),
     uuid         = require('node-uuid');
 
 function Request (data, callback) {
