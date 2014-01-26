@@ -34,7 +34,10 @@ var RequestManager = {
   },
   _handleReply: function (reply) {
     // Resolve the request matching the reply uuid with the data
-    this.get(reply.uuid).resolve(reply.data);
+    var request = this.get(reply.uuid)
+    if (request) {
+      request.resolve(reply.data);
+    }
   }
 };
 

@@ -114,6 +114,12 @@ describe('RequestManager', function () {
       });
     });
 
+    it('silently drops replies that do not match a request', function () {
+      expect(function () {
+        RequestManager._handleReply({uuid: '1'});
+      }).to.not.throw();
+    });
+
   });
 
 });
