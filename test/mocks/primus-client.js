@@ -1,10 +1,16 @@
 'use strict';
 
-function Primus () {
+function Primus (server, options) {
+  this.server = server;
+  this.options = options;
   this.transformers = {
     incoming: []
   };
 }
+
+Primus.prototype.use = function (name, plugin) {
+  plugin.client.call(this, this, this.options);
+};
 
 Primus.prototype.transform = function (direction, callback) {
   this.transformers[direction].push(callback);

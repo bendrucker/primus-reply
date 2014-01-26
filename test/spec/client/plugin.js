@@ -9,8 +9,8 @@ var expect         = require('chai').expect,
 
 describe('Plugin', function () {
 
-  beforeEach(function () {
-    this.primus = plugin(primus);
+  before(function () {
+    primus.use('primus-reply', plugin);
   });
   
   describe('primus.transform:incoming', function () {
@@ -18,7 +18,7 @@ describe('Plugin', function () {
     beforeEach(function () {
       sinon.stub(RequestManager, '_handleReply');
       this.incoming = function (packet) {
-        return this.primus.transformers.incoming[0].call(this.primus, packet);
+        return primus.transformers.incoming[0].call(primus, packet);
       };
     });
 
@@ -49,7 +49,7 @@ describe('Plugin', function () {
   describe('spark.request', function () {
 
     beforeEach(function () {
-      this.spark = new this.primus.spark();
+      this.spark = new primus.spark();
       sinon.spy(this.spark, 'write');
       sinon.spy(RequestManager, 'add');
       this.callback = sinon.spy();
