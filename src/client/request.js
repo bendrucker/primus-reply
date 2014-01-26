@@ -12,8 +12,10 @@ Handles:
 
 */
 
-var RSVP         = require('rsvp'),
-    uuid         = require('node-uuid');
+var RSVP = require('rsvp');
+var uuid = {
+  v4: require('uuid-v4.js')
+};
 
 function Request (data, callback) {
   this.deferred = new RSVP.defer();

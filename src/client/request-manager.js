@@ -1,7 +1,5 @@
 'use strict';
 
-var Request = require('./request');
-
 var RequestManager = {
   _pending: {},
   add: function (request) {

@@ -26,7 +26,7 @@
     "node": ">=0.8"
   },
   "devDependencies": {
-    "gulp": "~3.4.0",
+    "gulp": "~3.5.0",
     "karma": "~0.10.9",
     "karma-mocha": "~0.1.1",
     "mocha": "~1.17.1",
@@ -42,12 +42,15 @@
     "chai": "~1.8.1",
     "sinon": "~1.7.3",
     "lodash": "~2.4.1",
-    "ws": "~0.4.31"
+    "ws": "~0.4.31",
+    "gulp-browserify": "~0.3.4",
+    "gulp-rename": "~0.2.2",
+    "gulp-filesize": "0.0.5"
   },
   "dependencies": {
-    "node-uuid": "~1.4.1",
     "rsvp": "~3.0.3",
-    "primus": "~1.5.2"
+    "primus": "~1.5.2",
+    "uuid-v4.js": "~1.0.2"
   },
   "scripts": {
     "test": "mocha test/spec --recursive"
