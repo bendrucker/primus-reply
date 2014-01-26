@@ -14,4 +14,7 @@ Primus.prototype.spark = function () {};
 
 Primus.prototype.spark.prototype.write = function () {};
 
-module.exports = new Primus();
+module.exports = {
+  Primus: Primus,
+  primus: new Primus()
+};

@@ -2,7 +2,7 @@
 
 var expect         = require('chai').expect,
     sinon          = require('sinon'),
-    primusMock     = require('../../mocks/primus-client'),
+    primus         = require('../../mocks/primus-client').primus,
     plugin         = require('../../../src/client/plugin'),
     RequestManager = require('../../../src/client/request-manager'),
     Request        = require('../../../src/client/request');
@@ -10,7 +10,7 @@ var expect         = require('chai').expect,
 describe('Plugin', function () {
 
   beforeEach(function () {
-    this.primus = plugin(primusMock);
+    this.primus = plugin(primus);
   });
   
   describe('primus.transform:incoming', function () {
