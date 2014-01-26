@@ -1,0 +1,81 @@
+'use strict';
+
+var expect         = require('chai').expect,
+    sinon          = require('sinon'),
+    primusMock     = require('../../mocks/primus-client'),
+    plugin         = require('../../../src/client/plugin'),
+    RequestManager = require('../../../src/client/request-manager'),
+    Request        = require('../../../src/client/request');
+
+describe('Plugin', function () {
+
+  beforeEach(function () {
+    this.primus = plugin(primusMock);
+  });
+  
+  describe('primus.transform:incoming', function () {
+
+    beforeEach(function () {
+      sinon.stub(RequestManager, '_handleReply');
+      this.incoming = function (packet) {
+        return this.primus.transformers.incoming[0].call(this.primus, packet);
+      };
+    });
+
+    afterEach(function () {
+      RequestManager._handleReply.restore();
+    });
+
+    it('handles plugin messages', function () {
+      var packet = {
+        data: {
+          plugin: 'primus-reply'
+        }
+      };
+      expect(this.incoming(packet)).to.be.false;
+      sinon.assert.calledWith(RequestManager._handleReply, packet.data);
+    });
+
+    it('ignores non-plugin message', function () {
+      var packet = {
+        data: null
+      };
+      expect(this.incoming(packet)).to.not.be.false;
+      sinon.assert.notCalled(RequestManager._handleReply);
+    });
+
+  });
+
+  describe('spark.request', function () {
+
+    beforeEach(function () {
+      this.spark = new this.primus.spark();
+      sinon.spy(this.spark, 'write');
+      sinon.spy(RequestManager, 'add');
+      this.callback = sinon.spy();
+      this.data = 'data';
+      RequestManager.reset();
+      this.request = this.spark.request(this.data, this.callback);
+    });
+
+    afterEach(function () {
+      RequestManager.add.restore();
+    });
+
+    it('adds a new request to the RequestManager', function () {
+      sinon.assert.calledWith(RequestManager.add, sinon.match.instanceOf(Request));
+      expect(this.request).to.have.deep.property('envelope.data', this.data);
+      expect(this.request).to.have.property('callback', this.callback);
+    });
+
+    it('writes the request envelope', function () {
+      sinon.assert.calledWith(this.spark.write, this.request.envelope);
+    });
+
+    it('returns the request', function () {
+      expect(this.request).to.be.an.instanceOf(Request);
+    });
+
+  });
+
+});
