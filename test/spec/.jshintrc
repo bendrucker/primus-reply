@@ -6,6 +6,7 @@
   "nonew": true,
   "newcap": true,
   "immed": true,
+  "expr": true,
   "globals": {
     "describe": false,
     "before": false,

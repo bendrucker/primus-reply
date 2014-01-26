@@ -15,7 +15,6 @@ describe('RequestManager', function () {
   beforeEach(RequestManager.reset);
   
   it('has an internal pending request store', function () {
-    /* jshint expr:true */
     expect(RequestManager._pending)
       .to.exist;
   });
@@ -90,7 +89,6 @@ describe('RequestManager', function () {
     it('clears the pending list', function () {
       RequestManager.add(this.request);
       RequestManager.reset();
-      /* jshint expr:true */
       expect(RequestManager._pending).to.be.empty;
     });
 
