@@ -1,15 +1,17 @@
 'use strict';
 
-var primus = {
-  transformers: {
+function Primus () {
+  this.transformers = {
     incoming: []
-  },
-  transform: function (direction, callback) {
-    this.transformers[direction].push(callback);
-  },
-  spark: function () {}
+  };
+}
+
+Primus.prototype.transform = function (direction, callback) {
+  this.transformers[direction].push(callback);
 };
 
-primus.spark.prototype.write = function () {};
+Primus.prototype.spark = function () {};
 
-module.exports = primus;
+Primus.prototype.spark.prototype.write = function () {};
+
+module.exports = new Primus();
