@@ -7,7 +7,7 @@ var expect         = require('chai').expect,
     RequestManager = require('../../../src/client/request-manager'),
     Request        = require('../../../src/client/request');
 
-describe('Plugin', function () {
+describe('Plugin (Client)', function () {
 
   before(function () {
     primus.use('primus-reply', plugin);
