@@ -7,13 +7,13 @@ var Primus       = require('./primus-client').Primus,
 _.extend(Primus.prototype, EventEmitter.prototype);
 
 Primus.prototype.use = function (name, plugin) {
-  if (plugin.client) {
-    plugin.client.call(this, this, this.options);
-  }
-  if (plugin.server) {
-    plugin.server.call(this, this, this.options);
-  }
+  plugin.server.call(this, this, this.options);
 };
+
+Primus.prototype.spark = function () {};
+Primus.prototype.spark.prototype = Object.create(EventEmitter.prototype);
+Primus.prototype.spark.prototype.write = function () {};
+
 
 module.exports = {
   Primus: Primus,

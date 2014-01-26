@@ -11,13 +11,12 @@ var expect         = require('chai').expect,
 describe('Plugin (Client)', function () {
 
   before(function () {
-    primus.use('primus-reply', plugin);
+    plugin(primus, {
+      requestTimeout: 100
+    });
   });
 
   it('assigns options.requestTimeout to Request', function () {
-    new Primus(null, {
-      requestTimeout: 100
-    }).use('primus-reply', plugin);
     expect(Request.prototype)
       .to.have.property('timeout', 100);
   });
@@ -55,19 +54,19 @@ describe('Plugin (Client)', function () {
 
   });
 
-  describe('spark.request', function () {
+  describe('primus.request', function () {
 
     beforeEach(function () {
-      this.spark = new primus.spark();
-      sinon.spy(this.spark, 'write');
+      sinon.spy(primus, 'write');
       sinon.spy(RequestManager, 'add');
       this.callback = sinon.spy();
       this.data = 'data';
       RequestManager.reset();
-      this.request = this.spark.request(this.data, this.callback);
+      this.request = primus.request(this.data, this.callback);
     });
 
     afterEach(function () {
+      primus.write.restore();
       RequestManager.add.restore();
     });
 
@@ -78,7 +77,7 @@ describe('Plugin (Client)', function () {
     });
 
     it('writes the request envelope', function () {
-      sinon.assert.calledWith(this.spark.write, this.request.envelope);
+      sinon.assert.calledWith(primus.write, this.request.envelope);
     });
 
     it('returns the request', function () {

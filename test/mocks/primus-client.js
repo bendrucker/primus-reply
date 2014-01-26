@@ -10,18 +10,13 @@ function Primus (server, options) {
   };
 }
 
-Primus.prototype.use = function (name, plugin) {
-  plugin.client.call(this, this, this.options);
-};
+Primus.prototype = Object.create(EventEmitter.prototype);
 
 Primus.prototype.transform = function (direction, callback) {
   this.transformers[direction].push(callback);
 };
 
-Primus.prototype.spark = function () {};
-
-Primus.prototype.spark.prototype = Object.create(EventEmitter.prototype);
-Primus.prototype.spark.prototype.write = function () {};
+Primus.prototype.write = function () {};
 
 module.exports = {
   Primus: Primus,
