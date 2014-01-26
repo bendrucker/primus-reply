@@ -41,11 +41,13 @@
     "chai-as-promised": "~4.1.0",
     "chai": "~1.8.1",
     "sinon": "~1.7.3",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "ws": "~0.4.31"
   },
   "dependencies": {
     "node-uuid": "~1.4.1",
-    "rsvp": "~3.0.3"
+    "rsvp": "~3.0.3",
+    "primus": "~1.5.2"
   },
   "scripts": {
     "test": "mocha test/spec --recursive"
