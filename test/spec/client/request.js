@@ -5,7 +5,7 @@ var Request      = require('../../../src/client/request'),
     expect       = require('chai').expect,
     _            = require('lodash');
 
-describe('Request', function () {
+describe('Request (Client)', function () {
 
   beforeEach(function () {
     this.data = {
