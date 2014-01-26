@@ -96,4 +96,26 @@ describe('RequestManager', function () {
 
   });
 
+  describe('#_handleReply', function () {
+
+    beforeEach(function () {
+      RequestManager.add(this.request);
+    });
+
+    beforeEach(function () {
+      this.reply = {
+        uuid: this.request.id(),
+        data: 'reply'
+      };
+      RequestManager._handleReply(this.reply);
+    });
+
+    it('resolves the matching request with the reply', function () {
+      this.request.then(function (reply) {
+        expect(reply).to.equal('reply');
+      });
+    });
+
+  });
+
 });

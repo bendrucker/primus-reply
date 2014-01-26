@@ -5,9 +5,8 @@ var Request = require('./request');
 var RequestManager = {
   _pending: {},
   add: function (request) {
-    var id = request.id();
     // Add the request to the pending object
-    this._pending[id] = request;
+    this._pending[request.id()] = request;
 
     // Start the request timeout ticker
     request.timer = setTimeout(request._ontimeout.bind(request), request.timeout);
@@ -21,14 +20,21 @@ var RequestManager = {
     return request;
   },
   get: function (id) {
+    // Return the request with the specified ID
     return this._pending[id];
   },
   remove: function (request) {
+    // Clear the timeout timer and delete the request from pending
     clearTimeout(request.timer);
     delete this._pending[request.id()];
   },
   reset: function () {
+    // Empty all pending requests
     RequestManager._pending = {};
+  },
+  _handleReply: function (reply) {
+    // Resolve the request matching the reply uuid with the data
+    this.get(reply.uuid).resolve(reply.data);
   }
 };
 
