@@ -1,6 +1,6 @@
 'use strict';
 
-var stream = require('stream');
+var EventEmitter = require('events').EventEmitter;
 
 function Primus (server, options) {
   this.server = server;
@@ -20,7 +20,7 @@ Primus.prototype.transform = function (direction, callback) {
 
 Primus.prototype.spark = function () {};
 
-Primus.prototype.spark.prototype = Object.create(stream.Duplex.prototype);
+Primus.prototype.spark.prototype = Object.create(EventEmitter.prototype);
 Primus.prototype.spark.prototype.write = function () {};
 
 module.exports = {
