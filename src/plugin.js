@@ -7,7 +7,7 @@ client.toString = function () {
   return fs.readFileSync('./build/client.js');
 };
 
-var plugin = {
+module.exports = {
   server: server,
   client: client
 };
