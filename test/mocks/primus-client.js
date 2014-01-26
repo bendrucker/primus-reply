@@ -1,5 +1,7 @@
 'use strict';
 
+var stream = require('stream');
+
 function Primus (server, options) {
   this.server = server;
   this.options = options;
@@ -18,6 +20,7 @@ Primus.prototype.transform = function (direction, callback) {
 
 Primus.prototype.spark = function () {};
 
+Primus.prototype.spark.prototype = Object.create(stream.Duplex.prototype);
 Primus.prototype.spark.prototype.write = function () {};
 
 module.exports = {
