@@ -4,7 +4,7 @@ var EventEmitter = require('events').EventEmitter;
 
 function Primus (server, options) {
   this.server = server;
-  this.options = options;
+  this.options = options || {};
   this.transformers = {
     incoming: []
   };

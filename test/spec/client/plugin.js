@@ -3,6 +3,7 @@
 var expect         = require('chai').expect,
     sinon          = require('sinon'),
     primus         = require('../../mocks/primus-client').primus,
+    Primus         = require('../../mocks/primus-client').Primus,
     plugin         = require('../../../src/client/plugin'),
     RequestManager = require('../../../src/client/request-manager'),
     Request        = require('../../../src/client/request');
@@ -11,6 +12,14 @@ describe('Plugin (Client)', function () {
 
   before(function () {
     primus.use('primus-reply', plugin);
+  });
+
+  it('assigns options.requestTimeout to Request', function () {
+    new Primus(null, {
+      requestTimeout: 100
+    }).use('primus-reply', plugin);
+    expect(Request.prototype)
+      .to.have.property('timeout', 100);
   });
   
   describe('primus.transform:incoming', function () {

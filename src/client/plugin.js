@@ -4,7 +4,9 @@ var RequestManager = require('./request-manager'),
     Request        = require('./request');
 
 module.exports = {
-  client: function (primus) {
+  client: function (primus, options) {
+    Request.prototype.timeout = options.requestTimeout || Request.prototype.timeout;
+
     primus.transform('incoming', function (packet) {
       var data = packet.data;
       if (data && data.plugin && data.plugin === 'primus-reply') {
