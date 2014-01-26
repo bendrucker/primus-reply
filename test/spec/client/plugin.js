@@ -36,7 +36,7 @@ describe('Plugin (Client)', function () {
       sinon.assert.calledWith(RequestManager._handleReply, packet.data);
     });
 
-    it('ignores non-plugin message', function () {
+    it('ignores non-plugin messages', function () {
       var packet = {
         data: null
       };
