@@ -9,6 +9,7 @@ module.exports = {
 
   // list of files / patterns to load in the browser
   files: [
+    'node_modules/mocha-as-promised/mocha-as-promised.js',
     'test/integration/primus.js',
     'build/primus-reply-client.js',
     'test/integration/client.js',
