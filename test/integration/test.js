@@ -2,13 +2,17 @@
 
 describe('Integration Test', function () {
 
-  it('receives an echo reply', function () {
+  before(function (done) {
+    primus.on('open', done);
+  });
+
+  it('receives a reply', function () {
     var data = {
       message: 'hello server!'
     };
     return primus.request(data)
       .then(function(reply) {
-        expect(reply).to.deep.equal(data);
+        expect(reply).to.equal('hello client!');
       });
   });
 

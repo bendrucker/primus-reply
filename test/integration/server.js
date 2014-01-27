@@ -13,9 +13,12 @@ primus.save(__dirname + '/primus.js');
 
 module.exports = {
   primus: primus,
-  listen: function listen (callback) {
+  listen: function (callback) {
     server.listen(9801, function onListen () {
       if (callback) callback();
     });
+  },
+  close: function (callback) {
+    server.close(callback);
   }
 };
