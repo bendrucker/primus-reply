@@ -9,6 +9,8 @@ var gulp       = require('gulp'),
     jshint     = require('gulp-jshint'),
     clean      = require('gulp-clean'),
     uglify     = require('gulp-uglify'),
+    git        = require('gulp-git'),
+    sequence   = require('run-sequence'),
     spawn      = require('child_process').spawn,
     path       = require('path');
 
@@ -52,9 +54,31 @@ gulp.task('unit', function () {
 });
 
 gulp.task('integration', ['build'], function (done) {
-  var child = spawn('node', [
+  spawn('node', [
     path.join(__dirname, 'test', 'integration', 'runner.js'),
   ], {
     stdio: 'inherit'
-  }).on('exit', done);
+  }).on('close', done);
+});
+
+gulp.task('bump', function () {
+  return gulp.src('package.json')
+    .pipe(bump())
+    .pipe(gulp.dest('.'));
+});
+
+gulp.task('tag', ['bump'], function () {
+  var pkg     = require('./package.json'),
+      version = 'v' + pkg.version,
+      message = 'Release ' + v;
+
+  return gulp.src('./')
+    .pipe(git.commit(message))
+    .pipe(git.tag(v, message))
+    .pipe(git.push('origin', 'master', '--tags'))
+    .pipe(gulp.dest('.'));
+});
+
+gulp.task('test', function (done) {
+  sequence(['unit', 'lint'], 'integration', 'clean');
 });
