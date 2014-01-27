@@ -23,7 +23,7 @@
     "url": "git@github.com:valet-io/primus-reply.git"
   },
   "engines": {
-    "node": ">=0.8"
+    "node": ">=0.9"
   },
   "devDependencies": {
     "gulp": "~3.5.0",
