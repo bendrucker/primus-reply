@@ -57,6 +57,6 @@
     "uuid-v4.js": "~1.0.2"
   },
   "scripts": {
-    "test": "mocha test/spec --recursive"
+    "test": "gulp test"
   }
 }
