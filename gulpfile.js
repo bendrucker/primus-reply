@@ -25,7 +25,7 @@ gulp.task('test:unit', function () {
     .pipe(mocha())
 });
 
-gulp.task('test:integration', function (done) {
+gulp.task('test:integration', ['build'], function (done) {
   var child = spawn('node', [
     path.join(__dirname, 'test', 'integration', 'runner.js'),
   ], {
