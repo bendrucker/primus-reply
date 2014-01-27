@@ -10,6 +10,7 @@ var gulp       = require('gulp'),
     clean      = require('gulp-clean'),
     uglify     = require('gulp-uglify'),
     git        = require('gulp-git'),
+    bump       = require('gulp-bump'),
     sequence   = require('run-sequence'),
     spawn      = require('child_process').spawn,
     path       = require('path');
@@ -67,10 +68,10 @@ gulp.task('bump', function () {
     .pipe(gulp.dest('.'));
 });
 
-gulp.task('tag', ['bump'], function () {
+gulp.task('release', ['bump'], function () {
   var pkg     = require('./package.json'),
       version = 'v' + pkg.version,
-      message = 'Release ' + v;
+      message = 'Release ' + version;
 
   return gulp.src('./')
     .pipe(git.commit(message))
