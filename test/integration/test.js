@@ -1,5 +1,7 @@
 'use strict';
 
+/* global expect:false, primus:false */
+
 describe('Integration Test', function () {
 
   before(function (done) {

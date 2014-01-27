@@ -6,10 +6,11 @@ var gulp       = require('gulp'),
     rename     = require('gulp-rename'),
     size       = require('gulp-filesize'),
     mocha      = require('gulp-mocha'),
+    jshint     = require('gulp-jshint'),
     spawn      = require('child_process').spawn,
     path       = require('path');
 
-gulp.task('build', function () {
+gulp.task('browserify', function () {
   gulp.src('src/client/plugin.js', {read: false})
     .pipe(browserify({
       standalone: 'primusReply'
@@ -18,6 +19,20 @@ gulp.task('build', function () {
     .pipe(gulp.dest('./build'))
     .pipe(size());
 });
+
+gulp.task('lint:src', function () {
+  return gulp.src('./src/**/*.js')
+    .pipe(jshint('./src/.jshintrc'))
+    .pipe(jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('lint:test', function () {
+  return gulp.src('./test/**/*.js')
+    .pipe(jshint('./test/.jshintrc'))
+    .pipe(jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('lint', ['lint:src', 'lint:test']);
 
 gulp.task('test:unit', function () {
   require('./test/setup');

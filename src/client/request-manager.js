@@ -32,7 +32,7 @@ var RequestManager = {
   },
   _handleReply: function (reply) {
     // Resolve the request matching the reply uuid with the data
-    var request = this.get(reply.uuid)
+    var request = this.get(reply.uuid);
     if (request) {
       request.resolve(reply.data);
     }
