@@ -11,7 +11,7 @@ module.exports = {
   files: [
     'node_modules/mocha-as-promised/mocha-as-promised.js',
     'test/integration/primus.js',
-    'build/primus-reply-client.js',
+    'primus-reply-client.js',
     'test/integration/client.js',
     'test/integration/test.js'
   ],
