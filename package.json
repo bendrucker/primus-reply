@@ -1,6 +1,6 @@
 {
   "name": "primus-reply",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Primus plugin for socket messages that expect replies",
   "keywords": [
     "primus",
