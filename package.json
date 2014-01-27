@@ -47,7 +47,9 @@
     "gulp-rename": "~0.2.2",
     "gulp-filesize": "0.0.5",
     "sockjs": "~0.3.8",
-    "karma-es5-shim": "https://github.com/pokehanai/karma-es5-shim/archive/v2.1.0.tar.gz"
+    "karma-es5-shim": "https://github.com/pokehanai/karma-es5-shim/archive/v2.1.0.tar.gz",
+    "gulp-mocha": "~0.4.1",
+    "gulp-util": "~2.2.12"
   },
   "dependencies": {
     "rsvp": "~3.0.3",
