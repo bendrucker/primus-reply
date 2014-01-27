@@ -6,12 +6,11 @@ var gulp       = require('gulp'),
     size       = require('gulp-filesize');
 
 gulp.task('build', function () {
-  gulp.src('src/client/plugin.js')
-    .pipe(rename('client.js'))
+  gulp.src('src/client/plugin.js', {read: false})
     .pipe(browserify({
-      detectGlobals: true,
-      builtins: {}
+      standalone: 'primusReply'
     }))
+    .pipe(rename('primus-reply-client.js'))
     .pipe(gulp.dest('./build'))
     .pipe(size());
 });

@@ -5,7 +5,7 @@ var server = require('./server/plugin').server,
     fs     = require('fs');
 
 client.toString = function () {
-  return fs.readFileSync('./build/client.js');
+  return require('../build/client');
 };
 
 module.exports = {

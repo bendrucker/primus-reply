@@ -4,6 +4,8 @@ var RequestManager = require('./request-manager'),
     Request        = require('./request');
 
 module.exports = function (primus, options) {
+  options = options || {};
+  
   Request.prototype.timeout = options.requestTimeout || Request.prototype.timeout;
 
   primus.transform('incoming', function (packet) {
