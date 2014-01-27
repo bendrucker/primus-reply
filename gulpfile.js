@@ -32,3 +32,5 @@ gulp.task('test:integration', function (done) {
     stdio: 'inherit'
   }).on('exit', done);
 });
+
+gulp.task('test', ['test:unit', 'test:integration']);
