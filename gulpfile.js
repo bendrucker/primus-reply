@@ -11,6 +11,7 @@ var gulp       = require('gulp'),
     uglify     = require('gulp-uglify'),
     git        = require('gulp-git'),
     bump       = require('gulp-bump'),
+    istanbul   = require('gulp-istanbul'),
     sequence   = require('run-sequence'),
     spawn      = require('child_process').spawn,
     path       = require('path');
@@ -60,6 +61,18 @@ gulp.task('integration', ['build'], function (done) {
   ], {
     stdio: 'inherit'
   }).on('close', done);
+});
+
+gulp.task('cover', function () {
+  return gulp.src('src/**/*.js')
+    .pipe(istanbul())
+});
+
+gulp.task('coverage', ['cover'], function () {
+  require('./test/setup');
+  return gulp.src('test/unit/**/*.js')
+    .pipe(mocha())
+    .pipe(istanbul.writeReports());
 });
 
 gulp.task('bump', function () {
