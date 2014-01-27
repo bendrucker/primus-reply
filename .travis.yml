@@ -1,6 +1,14 @@
 language: node_js
 node_js:
-  - '0.11'
-  - '0.10'
+- '0.11'
+- '0.10'
 before_script:
-  - 'npm install -g gulp'
+- npm install -g gulp
+deploy:
+  provider: npm
+  email: bvdrucker@gmail.com
+  api_key:
+    secure: JU44u646/R8GIu3KUTc4w8LwsjpUWKSWJJT6VT2TLZ5MqGxApE/yT7ZW0+fabTEeR9ruuAUhNdWN0qrgJ8olMwaQPjkfWcNKiwlIBAZ/F4xZ/4hqV28qcV5MlQW43jki7JBtSGDAraqVZCXVuE3J+LUkD5F/MOzNSuej+OE0FMo=
+  on:
+    tags: true
+    repo: valet-io/primus-reply
