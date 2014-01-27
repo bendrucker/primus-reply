@@ -31,7 +31,7 @@ gulp.task('build', function () {
 });
 
 gulp.task('clean', function () {
-  return gulp.src('primus-reply-client*.js', {read: false})
+  return gulp.src(['primus-reply-client*.js', './coverage'], {read: false})
     .pipe(clean());
 });
 
