@@ -10,15 +10,30 @@ var expect         = require('chai').expect,
 
 describe('Plugin (Client)', function () {
 
-  before(function () {
-    plugin(primus, {
-      requestTimeout: 100
+  beforeEach(function () {
+    plugin(primus);
+  });
+
+  describe('options', function () {
+
+    it('does not require options', function () {
+      expect(function () {
+        plugin(primus, null);
+      }).to.not.throw();
     });
+
+    it('can set the request timeout', function () {
+      plugin(primus, {
+        requestTimeout: 100
+      });
+      expect(Request.prototype)
+        .to.have.property('timeout', 100);
+    });
+
   });
 
   it('assigns options.requestTimeout to Request', function () {
-    expect(Request.prototype)
-      .to.have.property('timeout', 100);
+    
   });
   
   describe('primus.transform:incoming', function () {
