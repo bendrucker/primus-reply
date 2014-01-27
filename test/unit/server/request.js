@@ -2,8 +2,11 @@
 
 var expect  = require('chai').expect,
     sinon   = require('sinon'),
-    Request = require('../../../src/server/request'),
-    uuid    = require('node-uuid');
+    Request = require('../../../src/server/request');
+
+var uuid = {
+  v4: require('uuid-v4.js')
+};
 
 describe('Request (Server)', function () {
 
