@@ -72,6 +72,10 @@ describe('RequestManager', function () {
       RequestManager.remove(this.request);
     });
 
+    afterEach(function () {
+      this.clock.restore();
+    });
+
     it('removes the request from the pending list', function () {
       expect(RequestManager.get(this.request.id()))
         .to.equal(undefined);
